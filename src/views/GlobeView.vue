@@ -56,6 +56,9 @@ import SponsorPaymentModal from '@/components/SponsorPaymentModal.vue';
 import MeetupBox from '@/components/MeetupBox.vue';
 import Loading from '@/components/Loading.vue';
 
+
+import tronApi from '@/util/tronApi'
+
 CountryCode.registerLocale(require('i18n-iso-countries/langs/en.json'));
 CountryCode.registerLocale(require('i18n-iso-countries/langs/zh.json'));
 CountryCode.registerLocale(require('i18n-iso-countries/langs/ko.json'));
@@ -93,7 +96,7 @@ export default {
       ],
     };
   },
-  created() {
+  async created() {
     this.updateCountryPriceMap();
   },
   mounted() {

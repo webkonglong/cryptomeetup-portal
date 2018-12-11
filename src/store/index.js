@@ -13,6 +13,10 @@ export default new Vuex.Store({
     ui,
   },
   state: {
+    tronWeb: {
+      installed: false,
+      loggedIn: false
+    },
     isScatterConnected: false,
     scatterAccount: null,
     portalInfoList: [],
@@ -38,6 +42,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setTronWeb(state, tronWebInfo) {
+      state.tronWeb = tronWebInfo;
+    },
     setLandInfo(state, landInfo) {
       state.landInfo = landInfo;
       state.landInfoUpdateAt = new Date();

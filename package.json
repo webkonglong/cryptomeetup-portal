@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "tronweb": "^2.1.9",
     "@geo-maps/countries-coastline-10km": "^0.6.0",
     "@xkeshi/vue-qrcode": "^1.0.0",
     "axios": "^0.18.0",

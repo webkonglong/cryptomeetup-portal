@@ -132,6 +132,8 @@ import Tokenview from '@/views/Token.vue';
 import API, { eos } from '@/util/api';
 import Loading from '@/components/Loading.vue';
 import InviteModal from '@/components/InviteModal.vue';
+import TronWeb from 'tronweb';
+import tronApi from '@/util/tronApi';
 
 export default {
   name: 'App',
@@ -154,7 +156,25 @@ export default {
     portalShow: false,
     portalList: []
   }),
-  created() {
+  async created() {
+    tronApi.setTronWeb(window.tronWeb)
+
+    // get
+    // tronApi.contract.getuint256(1).call().then(resp => {
+    //   console.log(resp, parseInt(resp.value._hex, 16), 'toNumber')
+    // })
+    /*** 发送 ***/
+
+      // send
+      // tronApi.contract.teststore().send({
+      //       shouldPollResponse: true,
+      //       callValue: 2000000000,
+      //   }).then(res => {
+      //     console.log('success', res)
+      //   }).catch(err => {
+      //       console.log('error', err)
+      //   });
+  
     this.countdownUpdater = setInterval(() => {
       if (this.globalInfo != null) {
         const currentTimestamp = Math.floor(Date.now() / 1000);
