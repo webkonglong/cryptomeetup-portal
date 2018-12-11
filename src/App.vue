@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <!--<GlobalProgress v-show="globalProgressVisible" :progress="globalProgressValue" />-->
-    <Loading v-show="globalProgressVisible" loadText="loading ..." />
-    <!--<GlobalSpinner v-show="!globalProgressVisible && globalSpinnerVisible" />-->
     <Loading v-show="!globalProgressVisible && globalSpinnerVisible" loadText="loading ..." />
-    <!--<div class="app-nav is-hidden-mobile" v-show="!tokenShow">-->
-    <myPortal v-if="portalShow" :portalList="portalList" @closeMyPortal="closeMyPortal" />
     <div class="app-nav is-hidden-mobile">
       <button :class="['nav-item', 'button', 'is-white', 'is-small', 'is-rounded', 'is-outlined', { 'is-loading': isScatterLoggingIn }]"
         @click="loginScatterAsync"
@@ -28,11 +23,8 @@
       <b-modal :active.sync="isInviteDialogActive" has-modal-card>
         <invite-modal></invite-modal>
       </b-modal>
-      <router-link class="nav-item" to="/">{{$t('map')}}</router-link>
-      <router-link class="nav-item" to="/globe">{{$t('globe')}}</router-link>
       <a class="nav-item" @click="tokenShow=!tokenShow">{{$t('token_view')}}</a>
       <a class="nav-item" @click="aboutShow=!aboutShow">{{$t('about_view')}}</a>
-      <a class="nav-item" @click="taggleMyPortal">{{$t('my_portal_nav')}}</a>
     </div>
     <Tokenview
       :tokenShow="tokenShow"
@@ -107,11 +99,6 @@
     </a>
     <slide-y-up-transition>
       <div class="app-nav-expand is-hidden-tablet" v-show="navBurgerVisible && mobileNavExpanded" @click="mobileNavExpanded=false"><!-- Nav Items on mobile -->
-        <router-link class="app-nav-expand-item" to="/">Map</router-link>
-        <router-link class="app-nav-expand-item" to="/globe">Globe</router-link>
-
-        <a class="app-nav-expand-item" @click="taggleMyPortal">{{$t('my_portal_nav')}}</a>
-
         <a class="app-nav-expand-item" @click="mobileAboutShow=!mobileAboutShow;"><b-icon class="question-icon" pack="fas" icon="question-circle" size="is-small"></b-icon>
 {{' '+$t('about_view')}}</a>
         <a class="app-nav-expand-item" @click="mobileTokenShow=!mobileTokenShow;"><b-icon icon="bank" size="is-small" />{{' '+$t('token_view')}}</a>
@@ -143,22 +130,16 @@ import Global from './Global.js';
 import Aboutview from '@/views/About.vue';
 import Tokenview from '@/views/Token.vue';
 import API, { eos } from '@/util/api';
-// import GlobalSpinner from '@/components/GlobalSpinner.vue';
 import Loading from '@/components/Loading.vue';
-// import GlobalProgress from '@/components/GlobalProgress.vue';
 import InviteModal from '@/components/InviteModal.vue';
-import myPortal from '@/components/landmark//myPortal.vue'
 
 export default {
   name: 'App',
   components: {
     Loading,
-    //  GlobalSpinner,
-    //  GlobalProgress,
     Aboutview,
     Tokenview,
     InviteModal,
-    myPortal
   },
   data: () => ({
     mobileNavExpanded: false,
@@ -440,12 +421,6 @@ export default {
     },
     changeInviteStatus() {
       this.isInviteDialogActive = true;
-    },
-    taggleMyPortal () {
-      this.portalShow = !this.portalShow
-    },
-    closeMyPortal () {
-      this.portalShow = false
     }
   },
   computed: {
